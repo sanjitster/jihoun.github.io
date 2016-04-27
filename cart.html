@@ -1,0 +1,1575 @@
+<!DOCTYPE HTML><html><head><title>Giift.com - cart API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.6.0"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+            
+            
+            // open modal on hashes like #_action_get
+            $(window).bind('hashchange', function(e) {
+                var anchor_id = document.location.hash.substr(1); //strip #
+                var element = $('#' + anchor_id);
+
+                // do we have such element + is it a modal?  --> show it
+                if (element.length && element.hasClass('modal')) {
+                    element.modal('show');
+                }
+            });
+
+            // execute hashchange on first page load
+            $(window).trigger('hashchange');
+            
+            // remove url fragment on modal hide
+            $('.modal').on('hidden.bs.modal', function() {
+                if(history && history.replaceState) { 
+                    history.replaceState({}, '', '#');
+                }
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .badge_patch {
+            background-color: #ccc444;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+            padding-right: 5px;
+            overflow: auto;
+            height: 90%;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Giift.com - cart API documentation <small>version v1</small></h1><p>https://www.giift.com/api/cart/v1</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_buy" class="panel-title">/buy</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__buy_card"><span class="parent">/buy</span>/card</a> <span class="methods"><a href="#_buy_card_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__buy_card" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_buy_card_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Allows buying one or multiple gift cards in a single api call. This is only available to retailers with previous agreement. To have access to the different steps of the process the cart, order, payment and delivery apis should be used.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_buy_card_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/buy</span>/card</h4></div><div class="modal-body"><div class="alert alert-info"><p>Allows buying one or multiple gift cards in a single api call. This is only available to retailers with previous agreement. To have access to the different steps of the process the cart, order, payment and delivery apis should be used.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_buy_card_post_request" data-toggle="tab">Request</a></li><li><a href="#_buy_card_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_buy_card_post_request"><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>dmoId</strong>: <em>required (string )</em><p>Id of the program to be bought.</p></li><li><strong>amount</strong>: <em>required (number )</em><p>Face value of the gift card to be bought.</p><p><strong>Example</strong>:</p><pre><code>25</code></pre></li><li><strong>units</strong>: <em>(integer- default: 1 )</em><p>Number of gift cards to be bought.</p></li><li><strong>state</strong>: <em>(string )</em><p>Optional external id that will be visible in the response.</p><p><strong>Example</strong>:</p><pre>EXTERNAL_ID_123213423</pre></li><li><strong>numbers</strong>: <em>(string )</em><p>List of numbers that should be assigned to the cards being issued. This feature is not available for all programs (dmos). And some numbers might already be taken. In that case an error is returned. It is usually better to omit this parameter. Numbers should be separated by commas.</p><p><strong>Example</strong>:</p><pre>4444333322221111,4444333322221112</pre></li><li><strong>delivery_type</strong>: <em>(one of api,offer- default: api )</em><p>Defines if this card is delivered directly in the response of this api call. Or if an email should be sent to someone with the card details.</p></li><li><strong>delivery_data_rname</strong>: <em>(string )</em><p>Name of the person receiving the card. Recommended if delivery_type==&#39;offer&#39;</p><p><strong>Example</strong>:</p><pre>John Connor</pre></li><li><strong>delivery_data_remail</strong>: <em>(string )</em><p>Email of the person receiving the card. Mandatory if delivery_type==&#39;offer&#39;</p><p><strong>Example</strong>:</p><pre>john.connor@skynet.com</pre></li><li><strong>delivery_data_msg</strong>: <em>(string )</em><p>Email of the person receiving the card. Mandatory if delivery_type==&#39;offer&#39;. Useless otherwise.</p><p><strong>Example</strong>:</p><pre>Happy Go Live</pre></li><li><strong>delivery_data_sname</strong>: <em>(string )</em><p>Name of the person sending the card. Recommended if delivery_type==&#39;offer&#39;. Useless otherwise.</p><p><strong>Example</strong>:</p><pre>Sarah</pre></li><li><strong>delivery_data_semail</strong>: <em>(string )</em><p>Email of the person sending the card. Recommended if delivery_type==&#39;offer&#39;. Useless otherwise.</p><p><strong>Example</strong>:</p><pre>sarah@skynet.com</pre></li><li><strong>delivery_data_date</strong>: <em>(date )</em><p>Date at which the card should be delivered. Default is today. Optionnal if delivery_type==&#39;offer&#39;. Useless otherwise. Format is YYYY-MM-DD.</p><p><strong>Example</strong>:</p><pre><code>2011-04-11</code></pre></li></ul><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "dmoId":"1459820042qpC87",
+  "amount":42,
+  "units":1,
+  "state":"EXTERNAL_ID_123213423",
+  "numbers":["4444333322221111"],
+  "delivery":{
+    "type":"offer",
+    "data":{
+      "r_name":"John Connor",
+      "r_email":"john.connor@skynet.com",
+      "msg":"Happy Go Live",
+      "date":"2011-04-11",
+      "from_name":"Sarah",
+      "from_mail":"sarah@skynet.com"
+    }
+  }
+}
+</code></pre></div><div class="tab-pane" id="_buy_card_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>For some cases, gift card status might be pending. When this happens, query again for the card details, using the card api every 5 minutes until the card status changes.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "orderId":"1456190431CbTe5",
+  "state":"EXTERNAL_ID_123213423",
+  "cards":[
+    {
+      "id": "1450839460ihJFs",
+      "dmo_id": "136549222407nqoek",
+      "user": null,
+      "status": "135024637834qjeik",
+      "fields": {
+        "value": 25.0,
+        "expiration": "2017-08-02",
+        "number": "4444333322221111"
+      },
+      "created_at": 1450839460,
+      "updated_at": 1451972060
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Current access token is invalid.</p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_cart" class="panel-title">/cart</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__cart_all"><span class="parent">/cart</span>/all</a> <span class="methods"><a href="#_cart_all_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_cart_all_delete"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__cart_all" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_cart_all_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Access all carts that the current user can read.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_cart_all_delete'" class="list-group-item"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Delete all open carts.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_all_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/cart</span>/all</h4></div><div class="modal-body"><div class="alert alert-info"><p>Access all carts that the current user can read.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_all_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_all_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cart list",
+  "type": "array",
+  "uniqueItems": true
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+    "Id": "1453888120JtfyE",
+    "Status": "locked",
+    "UserId": "1452670666lCUNH",
+    "CreatedAt": "2016-01-27T09:48:40Z",
+    "UpdatedAt": "2016-01-27T09:49:04Z",
+    "CartItems": [],
+    "value": 0
+  },
+  {
+    "Id": "1453888144H0u8E",
+    "Status": "locked",
+    "UserId": "1452670666lCUNH",
+    "CreatedAt": "2016-01-27T09:49:04Z",
+    "UpdatedAt": "2016-01-27T09:49:11Z",
+    "CartItems": [],
+    "value": 0
+  },
+  {
+    "Id": "1453888151hEwa9",
+    "Status": "deleted",
+    "UserId": "1452670666lCUNH",
+    "CreatedAt": "2016-01-27T09:49:11Z",
+    "UpdatedAt": "2016-03-18T04:07:05Z",
+    "CartItems": [],
+    "value": 0
+  }
+]
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Current access token is invalid.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_all_delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/cart</span>/all</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete all open carts.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_all_delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_all_delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cart update item response",
+  "type": "object",
+  "properties": {
+      "valid":{
+        "type":"boolean"
+      },
+      "updates":{
+        "type":"array"
+      }
+  },
+  "required": ["valid","updates"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "valid": true,
+  "updates": [
+    {
+      "type": "Giift\\Cart\\Cart",
+      "value": {
+        "Id": "1459828010Co2it",
+        "Status": "deleted",
+        "UserId": "1452670666lCUNH",
+        "CreatedAt": "2016-04-05T03:46:50Z",
+        "UpdatedAt": "2016-04-05T03:48:01Z",
+        "CartItems": [],
+        "value": 0
+      }
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__cart_item__cart_id_"><span class="parent">/cart</span>/item/{cart_id}</a> <span class="methods"><a href="#_cart_item__cart_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_cart_item__cart_id__delete"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__cart_item__cart_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_cart_item__cart_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the definition of a cart. This contains the cart value and the list of items.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_cart_item__cart_id__delete'" class="list-group-item"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Delete a cart. This will change the status of the cart and its items to deleted.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_item__cart_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/cart</span>/item/{cart_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the definition of a cart. This contains the cart value and the list of items.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_item__cart_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_cart_item__cart_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_item__cart_id__get_request"><h3>URI Parameters</h3><ul><li><strong>cart_id</strong>: <em>required (string )</em><p>Id of the cart.</p></li></ul></div><div class="tab-pane" id="_cart_item__cart_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cart item",
+  "type": "object",
+  "properties": {
+      "Id":{
+        "type":"string"
+      },
+      "Status":{
+        "type":"string"
+      },
+      "UserId":{
+        "type":"string"
+      },
+      "CreatedAt":{
+        "type":"string"
+      },
+      "UpdatedAt":{
+      	"type":"string"
+      },
+      "CartItems":{
+        "type":"array"
+      },
+      "value":{
+        "type":"number"
+      }
+  },
+  "required": ["Id","Status","UserId","CreatedAt","UpdatedAt","CartItems","value"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "Id": "1458610913DUnZt",
+  "Status": "locked",
+  "UserId": "1452670666lCUNH",
+  "CreatedAt": "2016-03-22T01:41:53Z",
+  "UpdatedAt": "2016-03-22T01:41:57Z",
+  "CartItems": [
+    {
+      "Id": "1458610915c4Ex0",
+      "Quantity": 10,
+      "Currency": "usd",
+      "BuyableType": "card",
+      "Info": [],
+      "Status": "locked",
+      "BuyableId": "1453456846XBvgZ",
+      "CartId": "1458610913DUnZt",
+      "CreatedAt": "2016-03-22T01:41:55Z",
+      "UpdatedAt": "2016-03-22T01:41:57Z",
+      "value": 10,
+      "name": "Jihoun Gift Card",
+      "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+    }
+  ],
+  "value": 10
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this cart.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_item__cart_id__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/cart</span>/item/{cart_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete a cart. This will change the status of the cart and its items to deleted.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_item__cart_id__delete_request" data-toggle="tab">Request</a></li><li><a href="#_cart_item__cart_id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_item__cart_id__delete_request"><h3>URI Parameters</h3><ul><li><strong>cart_id</strong>: <em>required (string )</em><p>Id of the cart.</p></li></ul></div><div class="tab-pane" id="_cart_item__cart_id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cart update item response",
+  "type": "object",
+  "properties": {
+      "valid":{
+        "type":"boolean"
+      },
+      "updates":{
+        "type":"array"
+      }
+  },
+  "required": ["valid","updates"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "valid": true,
+  "updates": [
+    {
+      "type": "Giift\\Cart\\Cart",
+      "value": {
+        "Id": "1459828010Co2it",
+        "Status": "deleted",
+        "UserId": "1452670666lCUNH",
+        "CreatedAt": "2016-04-05T03:46:50Z",
+        "UpdatedAt": "2016-04-05T03:48:01Z",
+        "CartItems": [],
+        "value": 0
+      }
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this cart.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__cart_new"><span class="parent">/cart</span>/new</a> <span class="methods"><a href="#_cart_new_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__cart_new" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_cart_new_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Create a new empty cart.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_new_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/cart</span>/new</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new empty cart.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_new_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_new_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cart item",
+  "type": "object",
+  "properties": {
+      "Id":{
+        "type":"string"
+      },
+      "Status":{
+        "type":"string"
+      },
+      "UserId":{
+        "type":"string"
+      },
+      "CreatedAt":{
+        "type":"string"
+      },
+      "UpdatedAt":{
+      	"type":"string"
+      },
+      "CartItems":{
+        "type":"array"
+      },
+      "value":{
+        "type":"number"
+      }
+  },
+  "required": ["Id","Status","UserId","CreatedAt","UpdatedAt","CartItems","value"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "Id": "1458610913DUnZt",
+  "Status": "locked",
+  "UserId": "1452670666lCUNH",
+  "CreatedAt": "2016-03-22T01:41:53Z",
+  "UpdatedAt": "2016-03-22T01:41:57Z",
+  "CartItems": [
+    {
+      "Id": "1458610915c4Ex0",
+      "Quantity": 10,
+      "Currency": "usd",
+      "BuyableType": "card",
+      "Info": [],
+      "Status": "locked",
+      "BuyableId": "1453456846XBvgZ",
+      "CartId": "1458610913DUnZt",
+      "CreatedAt": "2016-03-22T01:41:55Z",
+      "UpdatedAt": "2016-03-22T01:41:57Z",
+      "value": 10,
+      "name": "Jihoun Gift Card",
+      "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+    }
+  ],
+  "value": 10
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__cart_order__cart_id_"><span class="parent">/cart</span>/order/{cart_id}</a> <span class="methods"><a href="#_cart_order__cart_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__cart_order__cart_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_cart_order__cart_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Create an order from a cart. This will lock the cart. And any subsequent action on the cart itself is impossible.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_order__cart_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/cart</span>/order/{cart_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create an order from a cart. This will lock the cart. And any subsequent action on the cart itself is impossible.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_order__cart_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_cart_order__cart_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_order__cart_id__get_request"><h3>URI Parameters</h3><ul><li><strong>cart_id</strong>: <em>required (string )</em><p>Id of the cart.</p></li></ul></div><div class="tab-pane" id="_cart_order__cart_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cart to Order",
+  "type": "object",
+  "properties":{
+    "valid":{
+      "type":"boolean"
+    },
+    "order":{
+      "type":"object"
+    }
+  },
+  "required":["valid","order"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "valid": true,
+  "order": {
+    "Id": "1459830237ZvxkI",
+    "Status": "open",
+    "UserId": "1452670666lCUNH",
+    "CartId": "1459829975zfFTX",
+    "Currency": "usd",
+    "Info": [],
+    "CreatedAt": "2016-04-05T04:23:57Z",
+    "UpdatedAt": "2016-04-05T04:23:57Z",
+    "Cart": {
+      "Id": "1459829975zfFTX",
+      "Status": "locked",
+      "UserId": "1452670666lCUNH",
+      "CreatedAt": "2016-04-05T04:19:35Z",
+      "UpdatedAt": "2016-04-05T04:23:57Z",
+      "CartItems": [
+        {
+          "Id": "1459829978MJtV3",
+          "Quantity": 10,
+          "Currency": "usd",
+          "BuyableType": "card",
+          "Info": [],
+          "Status": "locked",
+          "BuyableId": "1453456846XBvgZ",
+          "CartId": "1459829975zfFTX",
+          "CreatedAt": "2016-04-05T04:19:38Z",
+          "UpdatedAt": "2016-04-05T04:23:57Z",
+          "CartOrderItems": [
+            {
+              "Id": "1459830237o51eV",
+              "Status": "open",
+              "CartItemId": "1459829978MJtV3",
+              "OrderId": "1459830237ZvxkI",
+              "Value": 10,
+              "DeliveryId": "1459830237F1CXe",
+              "CreatedAt": "2016-04-05T04:23:57Z",
+              "UpdatedAt": "2016-04-05T04:23:57Z",
+              "CartItem": "*RECURSION*",
+              "CartOrder": "*RECURSION*",
+              "CartDelivery": {
+                "Id": "1459830237F1CXe",
+                "Provider": "offer",
+                "Status": "open",
+                "Info": null,
+                "OrderId": "1459830237ZvxkI",
+                "CreatedAt": "2016-04-05T04:23:57Z",
+                "UpdatedAt": "2016-04-05T04:23:57Z",
+                "CartOrder": "*RECURSION*",
+                "CartOrderItems": [
+                  "*RECURSION*"
+                ],
+                "infos": []
+              },
+              "Currency": "usd",
+              "name": "Jihoun Gift Card",
+              "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png",
+              "qty": 10
+            }
+          ],
+          "value": 10,
+          "name": "Jihoun Gift Card",
+          "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+        }
+      ],
+      "CartOrders": [
+        "*RECURSION*"
+      ],
+      "value": 10
+    },
+    "CartOrderItems": [
+      {
+        "Id": "1459830237o51eV",
+        "Status": "open",
+        "CartItemId": "1459829978MJtV3",
+        "OrderId": "1459830237ZvxkI",
+        "Value": 10,
+        "DeliveryId": "1459830237F1CXe",
+        "CreatedAt": "2016-04-05T04:23:57Z",
+        "UpdatedAt": "2016-04-05T04:23:57Z",
+        "CartItem": {
+          "Id": "1459829978MJtV3",
+          "Quantity": 10,
+          "Currency": "usd",
+          "BuyableType": "card",
+          "Info": [],
+          "Status": "locked",
+          "BuyableId": "1453456846XBvgZ",
+          "CartId": "1459829975zfFTX",
+          "CreatedAt": "2016-04-05T04:19:38Z",
+          "UpdatedAt": "2016-04-05T04:23:57Z",
+          "CartOrderItems": [
+            "*RECURSION*"
+          ],
+          "value": 10,
+          "name": "Jihoun Gift Card",
+          "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+        },
+        "CartOrder": "*RECURSION*",
+        "CartDelivery": {
+          "Id": "1459830237F1CXe",
+          "Provider": "offer",
+          "Status": "open",
+          "Info": null,
+          "OrderId": "1459830237ZvxkI",
+          "CreatedAt": "2016-04-05T04:23:57Z",
+          "UpdatedAt": "2016-04-05T04:23:57Z",
+          "CartOrder": "*RECURSION*",
+          "CartOrderItems": [
+            "*RECURSION*"
+          ],
+          "infos": []
+        },
+        "Currency": "usd",
+        "name": "Jihoun Gift Card",
+        "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png",
+        "qty": 10
+      }
+    ],
+    "CartDeliveries": [
+      {
+        "Id": "1459830237F1CXe",
+        "Provider": "offer",
+        "Status": "open",
+        "Info": null,
+        "OrderId": "1459830237ZvxkI",
+        "CreatedAt": "2016-04-05T04:23:57Z",
+        "UpdatedAt": "2016-04-05T04:23:57Z",
+        "CartOrder": "*RECURSION*",
+        "CartOrderItems": [
+          {
+            "Id": "1459830237o51eV",
+            "Status": "open",
+            "CartItemId": "1459829978MJtV3",
+            "OrderId": "1459830237ZvxkI",
+            "Value": 10,
+            "DeliveryId": "1459830237F1CXe",
+            "CreatedAt": "2016-04-05T04:23:57Z",
+            "UpdatedAt": "2016-04-05T04:23:57Z",
+            "CartItem": {
+              "Id": "1459829978MJtV3",
+              "Quantity": 10,
+              "Currency": "usd",
+              "BuyableType": "card",
+              "Info": [],
+              "Status": "locked",
+              "BuyableId": "1453456846XBvgZ",
+              "CartId": "1459829975zfFTX",
+              "CreatedAt": "2016-04-05T04:19:38Z",
+              "UpdatedAt": "2016-04-05T04:23:57Z",
+              "CartOrderItems": [
+                "*RECURSION*"
+              ],
+              "value": 10,
+              "name": "Jihoun Gift Card",
+              "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+            },
+            "CartOrder": "*RECURSION*",
+            "CartDelivery": "*RECURSION*",
+            "Currency": "usd",
+            "name": "Jihoun Gift Card",
+            "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png",
+            "qty": 10
+          }
+        ],
+        "infos": []
+      }
+    ],
+    "value": 10
+  }
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this cart.</p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_buyable" class="panel-title">/buyable</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__buyable_item__type___id_"><span class="parent">/buyable</span>/item/{type}/{id}</a> <span class="methods"><a href="#_buyable_item__type___id__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__buyable_item__type___id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_buyable_item__type___id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Fetch the description of an item that can be bought.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_buyable_item__type___id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/buyable</span>/item/{type}/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Fetch the description of an item that can be bought.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_buyable_item__type___id__get_request" data-toggle="tab">Request</a></li><li><a href="#_buyable_item__type___id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_buyable_item__type___id__get_request"><h3>URI Parameters</h3><ul><li><strong>type</strong>: <em>required (one of topup,card,product )</em><p><strong>Example</strong>:</p><pre>topup</pre></li><li><strong>id</strong>: <em>required (string )</em><p>depends on the type. Typically a dmo id or a product id.</p></li></ul></div><div class="tab-pane" id="_buyable_item__type___id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Buyable item",
+  "type": "object",
+  "properties": {
+      "id":{
+        "type":"string"
+      },
+      "type":{
+        "type":"string"
+      },
+      "name":{
+        "type":"string",
+        "description": "printable name of the buyable."
+      },
+      "img":{
+        "type":"string",
+        "description":"url of a picture representing the buyable object"
+      },
+      "units":{
+      	"type":"array"
+      },
+      "fields":{},
+      "bonus":{},
+      "fees":{
+        "type":"object",
+        "properties":{
+          "a":{},
+          "b":{}
+        }
+      },
+      "tc":{
+        "type":"string"
+      }
+  },
+  "required": ["id","type","name","img","units","bonus","fees","tc"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "id": "139282285120gnzuf",
+  "type": "topup",
+  "name": "Vintry Fine Wines",
+  "img": "https://d16a8a62orsrve.cloudfront.net/assets/img/card_tpl/139282285115xbwmg.png",
+  "units": [
+    {
+      "min": 50,
+      "max": 50,
+      "step": 0,
+      "type": "fixed",
+      "unit": "usd"
+    },
+    {
+      "min": 100,
+      "max": 100,
+      "step": 0,
+      "type": "fixed",
+      "unit": "usd"
+    },
+    {
+      "min": 150,
+      "max": 150,
+      "step": 0,
+      "type": "fixed",
+      "unit": "usd"
+    },
+    {
+      "min": 200,
+      "max": 200,
+      "step": 0,
+      "type": "fixed",
+      "unit": "usd"
+    },
+    {
+      "min": 10,
+      "max": 500,
+      "step": 0,
+      "type": "variable",
+      "unit": "usd"
+    }
+  ],
+  "fields": {
+    "fields": {
+      "card_id": {
+        "label": "",
+        "label_id": "",
+        "label_replace": [],
+        "id": "card_id",
+        "type": "text",
+        "mandatory": true,
+        "value": null,
+        "group": null,
+        "order": 0,
+        "settings": []
+      }
+    },
+    "groups": [],
+    "settings": []
+  },
+  "bonus": null,
+  "fees": {
+    "a": {
+      "type": "fixed",
+      "params": {
+        "value": "0.034"
+      }
+    },
+    "b": {
+      "type": "fixed",
+      "params": {
+        "value": "0.5"
+      }
+    }
+  },
+  "tc": "..."
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_item" class="panel-title">/item</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__item_item"><span class="parent">/item</span>/item</a> <span class="methods"><a href="#_item_item_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__item_item" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_item_item_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Add a new item to an existing cart.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_item_item_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/item</span>/item</h4></div><div class="modal-body"><div class="alert alert-info"><p>Add a new item to an existing cart.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_item_item_post_request" data-toggle="tab">Request</a></li><li><a href="#_item_item_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_item_item_post_request"><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>buyable_type</strong>: <em>required (one of topup,card,product )</em><p><strong>Example</strong>:</p><pre>card</pre></li><li><strong>buyable_id</strong>: <em>required (string )</em></li><li><strong>ccy</strong>: <em>required (string )</em><p>3 letters currency code (lower case)</p><p><strong>Example</strong>:</p><pre>usd</pre></li><li><strong>qty</strong>: <em>required (number )</em></li><li><strong>cart_id</strong>: <em>required (string )</em><p>Id of the cart to which the item should be added.</p></li></ul></div><div class="tab-pane" id="_item_item_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cart update item response",
+  "type": "object",
+  "properties": {
+      "valid":{
+        "type":"boolean"
+      },
+      "updates":{
+        "type":"array"
+      }
+  },
+  "required": ["valid","updates"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "valid": true,
+  "updates": [
+    {
+      "type": "Giift\\Cart\\Cart",
+      "value": {
+        "Id": "1459829975zfFTX",
+        "Status": "open",
+        "UserId": "1452670666lCUNH",
+        "CreatedAt": "2016-04-05T04:19:35Z",
+        "UpdatedAt": "2016-04-05T04:19:35Z",
+        "CartItems": [
+          {
+            "Id": "1459829978MJtV3",
+            "Quantity": 10,
+            "Currency": "usd",
+            "BuyableType": "card",
+            "Info": [],
+            "Status": "open",
+            "BuyableId": "1453456846XBvgZ",
+            "CartId": "1459829975zfFTX",
+            "CreatedAt": "2016-04-05T04:19:38Z",
+            "UpdatedAt": "2016-04-05T04:19:38Z",
+            "Cart": "*RECURSION*",
+            "value": 10,
+            "name": "Jihoun Gift Card",
+            "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+          }
+        ],
+        "value": 10
+      }
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present. Or when one of the input fields is invalid.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this cart.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__item_item__item_id_"><span class="parent">/item</span>/item/{item_id}</a> <span class="methods"><a href="#_item_item__item_id__delete"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_item_item__item_id__patch"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__item_item__item_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_item_item__item_id__delete'" class="list-group-item"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Delete an item from its cart. The item actually stays in the cart, but its status changes to "deleted".</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_item_item__item_id__patch'" class="list-group-item"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Allow editing an item&#39;s setup before buying it.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_item_item__item_id__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/item</span>/item/{item_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete an item from its cart. The item actually stays in the cart, but its status changes to "deleted".</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_item_item__item_id__delete_request" data-toggle="tab">Request</a></li><li><a href="#_item_item__item_id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_item_item__item_id__delete_request"><h3>URI Parameters</h3><ul><li><strong>item_id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_item_item__item_id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on the parent cart.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_item_item__item_id__patch"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/item</span>/item/{item_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Allow editing an item&#39;s setup before buying it.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_item_item__item_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#_item_item__item_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_item_item__item_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>item_id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p></div><div class="tab-pane" id="_item_item__item_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Invalid access token, or invalid value for a field.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this cart.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__item_qty__item_id_"><span class="parent">/item</span>/qty/{item_id}</a> <span class="methods"><a href="#_item_qty__item_id__patch"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__item_qty__item_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_item_qty__item_id__patch'" class="list-group-item"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Modify an item&#39;s quantity in its cart.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_item_qty__item_id__patch"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/item</span>/qty/{item_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Modify an item&#39;s quantity in its cart.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_item_qty__item_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#_item_qty__item_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_item_qty__item_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>item_id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>quantity</strong>: <em>required (number )</em></li></ul></div><div class="tab-pane" id="_item_qty__item_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Invalid quantity for this item. Or missing access token.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on the parent cart.</p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_order" class="panel-title">/order</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__order_all"><span class="parent">/order</span>/all</a> <span class="methods"><a href="#_order_all_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__order_all" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_order_all_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Access all orders that a user can read.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_order_all_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/order</span>/all</h4></div><div class="modal-body"><div class="alert alert-info"><p>Access all orders that a user can read.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_order_all_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_order_all_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__order_item__order_id_"><span class="parent">/order</span>/item/{order_id}</a> <span class="methods"><a href="#_order_item__order_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_order_item__order_id__patch"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__order_item__order_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_order_item__order_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the full description of an order from its id.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_order_item__order_id__patch'" class="list-group-item"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Add/Update information on an order.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_order_item__order_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/order</span>/item/{order_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the full description of an order from its id.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_order_item__order_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_order_item__order_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_order_item__order_id__get_request"><h3>URI Parameters</h3><ul><li><strong>order_id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_order_item__order_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "Id": "1459830237ZvxkI",
+  "Status": "open",
+  "UserId": "1452670666lCUNH",
+  "CartId": "1459829975zfFTX",
+  "Currency": "usd",
+  "Info": [],
+  "CreatedAt": "2016-04-05T04:23:57Z",
+  "UpdatedAt": "2016-04-05T04:23:57Z",
+  "Cart": {
+    "Id": "1459829975zfFTX",
+    "Status": "locked",
+    "UserId": "1452670666lCUNH",
+    "CreatedAt": "2016-04-05T04:19:35Z",
+    "UpdatedAt": "2016-04-05T04:23:57Z",
+    "CartItems": [
+      {
+        "Id": "1459829978MJtV3",
+        "Quantity": 10,
+        "Currency": "usd",
+        "BuyableType": "card",
+        "Info": [],
+        "Status": "locked",
+        "BuyableId": "1453456846XBvgZ",
+        "CartId": "1459829975zfFTX",
+        "CreatedAt": "2016-04-05T04:19:38Z",
+        "UpdatedAt": "2016-04-05T04:23:57Z",
+        "CartOrderItems": [
+          {
+            "Id": "1459830237o51eV",
+            "Status": "open",
+            "CartItemId": "1459829978MJtV3",
+            "OrderId": "1459830237ZvxkI",
+            "Value": 10,
+            "DeliveryId": "1459830237F1CXe",
+            "CreatedAt": "2016-04-05T04:23:57Z",
+            "UpdatedAt": "2016-04-05T04:23:57Z",
+            "CartItem": "*RECURSION*",
+            "CartOrder": "*RECURSION*",
+            "CartDelivery": {
+              "Id": "1459830237F1CXe",
+              "Provider": "offer",
+              "Status": "open",
+              "Info": null,
+              "OrderId": "1459830237ZvxkI",
+              "CreatedAt": "2016-04-05T04:23:57Z",
+              "UpdatedAt": "2016-04-05T04:23:57Z",
+              "CartOrder": "*RECURSION*",
+              "CartOrderItems": [
+                "*RECURSION*"
+              ],
+              "infos": []
+            },
+            "Currency": "usd",
+            "name": "Jihoun Gift Card",
+            "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png",
+            "qty": 10
+          }
+        ],
+        "value": 10,
+        "name": "Jihoun Gift Card",
+        "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+      }
+    ],
+    "CartOrders": [
+      "*RECURSION*"
+    ],
+    "value": 10
+  },
+  "CartOrderItems": [
+    {
+      "Id": "1459830237o51eV",
+      "Status": "open",
+      "CartItemId": "1459829978MJtV3",
+      "OrderId": "1459830237ZvxkI",
+      "Value": 10,
+      "DeliveryId": "1459830237F1CXe",
+      "CreatedAt": "2016-04-05T04:23:57Z",
+      "UpdatedAt": "2016-04-05T04:23:57Z",
+      "CartItem": {
+        "Id": "1459829978MJtV3",
+        "Quantity": 10,
+        "Currency": "usd",
+        "BuyableType": "card",
+        "Info": [],
+        "Status": "locked",
+        "BuyableId": "1453456846XBvgZ",
+        "CartId": "1459829975zfFTX",
+        "CreatedAt": "2016-04-05T04:19:38Z",
+        "UpdatedAt": "2016-04-05T04:23:57Z",
+        "CartOrderItems": [
+          "*RECURSION*"
+        ],
+        "value": 10,
+        "name": "Jihoun Gift Card",
+        "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+      },
+      "CartOrder": "*RECURSION*",
+      "CartDelivery": {
+        "Id": "1459830237F1CXe",
+        "Provider": "offer",
+        "Status": "open",
+        "Info": null,
+        "OrderId": "1459830237ZvxkI",
+        "CreatedAt": "2016-04-05T04:23:57Z",
+        "UpdatedAt": "2016-04-05T04:23:57Z",
+        "CartOrder": "*RECURSION*",
+        "CartOrderItems": [
+          "*RECURSION*"
+        ],
+        "infos": []
+      },
+      "Currency": "usd",
+      "name": "Jihoun Gift Card",
+      "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png",
+      "qty": 10
+    }
+  ],
+  "CartDeliveries": [
+    {
+      "Id": "1459830237F1CXe",
+      "Provider": "offer",
+      "Status": "open",
+      "Info": null,
+      "OrderId": "1459830237ZvxkI",
+      "CreatedAt": "2016-04-05T04:23:57Z",
+      "UpdatedAt": "2016-04-05T04:23:57Z",
+      "CartOrder": "*RECURSION*",
+      "CartOrderItems": [
+        {
+          "Id": "1459830237o51eV",
+          "Status": "open",
+          "CartItemId": "1459829978MJtV3",
+          "OrderId": "1459830237ZvxkI",
+          "Value": 10,
+          "DeliveryId": "1459830237F1CXe",
+          "CreatedAt": "2016-04-05T04:23:57Z",
+          "UpdatedAt": "2016-04-05T04:23:57Z",
+          "CartItem": {
+            "Id": "1459829978MJtV3",
+            "Quantity": 10,
+            "Currency": "usd",
+            "BuyableType": "card",
+            "Info": [],
+            "Status": "locked",
+            "BuyableId": "1453456846XBvgZ",
+            "CartId": "1459829975zfFTX",
+            "CreatedAt": "2016-04-05T04:19:38Z",
+            "UpdatedAt": "2016-04-05T04:23:57Z",
+            "CartOrderItems": [
+              "*RECURSION*"
+            ],
+            "value": 10,
+            "name": "Jihoun Gift Card",
+            "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png"
+          },
+          "CartOrder": "*RECURSION*",
+          "CartDelivery": "*RECURSION*",
+          "Currency": "usd",
+          "name": "Jihoun Gift Card",
+          "img": "http://localhost/giift-web-nicolas/public/assets/img/card_tpl/1453456810jRXwm.png",
+          "qty": 10
+        }
+      ],
+      "infos": []
+    }
+  ],
+  "value": 10
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this order.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_order_item__order_id__patch"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/order</span>/item/{order_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Add/Update information on an order.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_order_item__order_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#_order_item__order_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_order_item__order_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>order_id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p></div><div class="tab-pane" id="_order_item__order_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present. Or when the patched fields are invalid.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this order.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__order_available_payment_providers__order_id_"><span class="parent">/order</span>/available_payment_providers/{order_id}</a> <span class="methods"><a href="#_order_available_payment_providers__order_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__order_available_payment_providers__order_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_order_available_payment_providers__order_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the list of payment providers compatible with the current order and the current user. Each provider comes with the list of parameteres to initialize the client.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_order_available_payment_providers__order_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/order</span>/available_payment_providers/{order_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the list of payment providers compatible with the current order and the current user. Each provider comes with the list of parameteres to initialize the client.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_order_available_payment_providers__order_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_order_available_payment_providers__order_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_order_available_payment_providers__order_id__get_request"><h3>URI Parameters</h3><ul><li><strong>order_id</strong>: <em>required (string )</em><p>Id of the order being querried.</p></li></ul></div><div class="tab-pane" id="_order_available_payment_providers__order_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this order.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__order_payment__order_id_"><span class="parent">/order</span>/payment/{order_id}</a> <span class="methods"><a href="#_order_payment__order_id__post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__order_payment__order_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_order_payment__order_id__post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Initialize the payment of the cart. Next step is usually payment/pay</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_order_payment__order_id__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/order</span>/payment/{order_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Initialize the payment of the cart. Next step is usually payment/pay</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_order_payment__order_id__post_request" data-toggle="tab">Request</a></li><li><a href="#_order_payment__order_id__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_order_payment__order_id__post_request"><h3>URI Parameters</h3><ul><li><strong>order_id</strong>: <em>required (string )</em><p>Id of the order being querried.</p></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>provider</strong>: <em>required (string )</em><p><strong>Example</strong>:</p><pre>paypal</pre></li></ul></div><div class="tab-pane" id="_order_payment__order_id__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present. Or when the specified provider is not valid.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this order.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__order_available_delivery_providers__order_id_"><span class="parent">/order</span>/available_delivery_providers/{order_id}</a> <span class="methods"><a href="#_order_available_delivery_providers__order_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__order_available_delivery_providers__order_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_order_available_delivery_providers__order_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the list of available delivery providers compatible with the current order and the current user.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_order_available_delivery_providers__order_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/order</span>/available_delivery_providers/{order_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the list of available delivery providers compatible with the current order and the current user.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_order_available_delivery_providers__order_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_order_available_delivery_providers__order_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_order_available_delivery_providers__order_id__get_request"><h3>URI Parameters</h3><ul><li><strong>order_id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_order_available_delivery_providers__order_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this order.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__order_delivery__order_id_"><span class="parent">/order</span>/delivery/{order_id}</a> <span class="methods"><a href="#_order_delivery__order_id__post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__order_delivery__order_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_order_delivery__order_id__post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Select a delivery provider.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_order_delivery__order_id__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/order</span>/delivery/{order_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Select a delivery provider.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_order_delivery__order_id__post_request" data-toggle="tab">Request</a></li><li><a href="#_order_delivery__order_id__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_order_delivery__order_id__post_request"><h3>URI Parameters</h3><ul><li><strong>order_id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>provider</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_order_delivery__order_id__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present. Or when specified delivery provider is not valid.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this order.</p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_payment" class="panel-title">/payment</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__payment_required_fields__payment_id_"><span class="parent">/payment</span>/required_fields/{payment_id}</a> <span class="methods"><a href="#_payment_required_fields__payment_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__payment_required_fields__payment_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_payment_required_fields__payment_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>To be complete, a payment requires information such as a credit card number, card holder name, etc. This depends on each payment provider and on the content of the underlying order. This method gives access to the list of required fields.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_payment_required_fields__payment_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/payment</span>/required_fields/{payment_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>To be complete, a payment requires information such as a credit card number, card holder name, etc. This depends on each payment provider and on the content of the underlying order. This method gives access to the list of required fields.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_payment_required_fields__payment_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_payment_required_fields__payment_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_payment_required_fields__payment_id__get_request"><h3>URI Parameters</h3><ul><li><strong>payment_id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_payment_required_fields__payment_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this payment.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__payment_item__payment_id_"><span class="parent">/payment</span>/item/{payment_id}</a> <span class="methods"><a href="#_payment_item__payment_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_payment_item__payment_id__patch"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__payment_item__payment_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_payment_item__payment_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the full information of a payment from its id.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_payment_item__payment_id__patch'" class="list-group-item"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Set the payment information as required by the method required_fields or by a previous call to this method.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_payment_item__payment_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/payment</span>/item/{payment_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the full information of a payment from its id.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_payment_item__payment_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_payment_item__payment_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_payment_item__payment_id__get_request"><h3>URI Parameters</h3><ul><li><strong>payment_id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_payment_item__payment_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this payment.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_payment_item__payment_id__patch"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/payment</span>/item/{payment_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Set the payment information as required by the method required_fields or by a previous call to this method.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_payment_item__payment_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#_payment_item__payment_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_payment_item__payment_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>payment_id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p></div><div class="tab-pane" id="_payment_item__payment_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this payment.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__payment_pay__payment_id_"><span class="parent">/payment</span>/pay/{payment_id}</a> <span class="methods"><a href="#_payment_pay__payment_id__post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__payment_pay__payment_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_payment_pay__payment_id__post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Process to the payment</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_payment_pay__payment_id__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/payment</span>/pay/{payment_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Process to the payment</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_payment_pay__payment_id__post_request" data-toggle="tab">Request</a></li><li><a href="#_payment_pay__payment_id__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_payment_pay__payment_id__post_request"><h3>URI Parameters</h3><ul><li><strong>payment_id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p></div><div class="tab-pane" id="_payment_pay__payment_id__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Payment was succesfull. If the underlying order is fully paid, the delivery should be triggered.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this payment.</p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_delivery" class="panel-title">/delivery</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__delivery_item__delivery_id_"><span class="parent">/delivery</span>/item/{delivery_id}</a> <span class="methods"><a href="#_delivery_item__delivery_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_delivery_item__delivery_id__patch"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__delivery_item__delivery_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_delivery_item__delivery_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get status and information of a delivery.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_delivery_item__delivery_id__patch'" class="list-group-item"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Modify information of a delivery. Only an open delivery object can be modified. The list of fields available for modification is available through a call to delivery/item/{delivery_id} [GET]</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_delivery_item__delivery_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/delivery</span>/item/{delivery_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get status and information of a delivery.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_delivery_item__delivery_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_delivery_item__delivery_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_delivery_item__delivery_id__get_request"><h3>URI Parameters</h3><ul><li><strong>delivery_id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_delivery_item__delivery_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Can happen, when access token is not present.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this delivery.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_delivery_item__delivery_id__patch"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/delivery</span>/item/{delivery_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Modify information of a delivery. Only an open delivery object can be modified. The list of fields available for modification is available through a call to delivery/item/{delivery_id} [GET]</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_delivery_item__delivery_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#_delivery_item__delivery_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_delivery_item__delivery_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>delivery_id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p></div><div class="tab-pane" id="_delivery_item__delivery_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Might happen when the access token is missing or when the patched information is incorrect.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Error message",
+  "type": "object",
+  "properties":{
+    "error":{
+      "enum": [
+        "invalid_request", "unauthorized_client", "access_denied", "unsupported_response_type", "invalid_scope",
+      	"server_error",
+        "temporarily_unavailable"
+      ]
+    },
+    "error_description":{
+      "type":"string"
+    },
+    "error_uri":{
+      "type":"string"
+    },
+    "state":{
+      "type":"string"
+    }
+  },
+  "required":["error"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "error": "invalid_request",
+  "error_description": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed. Check the \"access token\" parameter."
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this delivery.</p></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_buy">/buy</a></li><li><a href="#_cart">/cart</a></li><li><a href="#_buyable">/buyable</a></li><li><a href="#_item">/item</a></li><li><a href="#_order">/order</a></li><li><a href="#_payment">/payment</a></li><li><a href="#_delivery">/delivery</a></li></ul></div></div></div></div></body></html>

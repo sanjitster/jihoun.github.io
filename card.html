@@ -1,0 +1,731 @@
+<!DOCTYPE HTML><html><head><title>Giift.com - card API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.6.0"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+            
+            
+            // open modal on hashes like #_action_get
+            $(window).bind('hashchange', function(e) {
+                var anchor_id = document.location.hash.substr(1); //strip #
+                var element = $('#' + anchor_id);
+
+                // do we have such element + is it a modal?  --> show it
+                if (element.length && element.hasClass('modal')) {
+                    element.modal('show');
+                }
+            });
+
+            // execute hashchange on first page load
+            $(window).trigger('hashchange');
+            
+            // remove url fragment on modal hide
+            $('.modal').on('hidden.bs.modal', function() {
+                if(history && history.replaceState) { 
+                    history.replaceState({}, '', '#');
+                }
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .badge_patch {
+            background-color: #ccc444;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+            padding-right: 5px;
+            overflow: auto;
+            height: 90%;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Giift.com - card API documentation <small>version v1</small></h1><p>https://www.giift.com/api/card/v1</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_card" class="panel-title">/card</h3></div><div class="panel-body"><div class="top-resource-description"><p>A card is the link between a program and a user. The card holds a value, a card number, an eventual password, etc.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_all__date_"><span class="parent">/card</span>/all/{date}</a> <span class="methods"><a href="#_card_all__date__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_all__date_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_all__date__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the list of cards accessible by the current user.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_all__date__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/all/{date}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the list of cards accessible by the current user.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_all__date__get_request" data-toggle="tab">Request</a></li><li><a href="#_card_all__date__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_all__date__get_request"><h3>URI Parameters</h3><ul><li><strong>date</strong>: <em>(integer )</em><p>Timestamp. If specified, only cards with a timestamp strictly superior to this one will be returned.</p></li></ul></div><div class="tab-pane" id="_card_all__date__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have right to perform this operation. Probably a missing scope.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_find"><span class="parent">/card</span>/find</a> <span class="methods"><a href="#_card_find_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_find" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_find_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Find a list of card depending on the post parameters.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_find_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/find</h4></div><div class="modal-body"><div class="alert alert-info"><p>Find a list of card depending on the post parameters.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_find_post_request" data-toggle="tab">Request</a></li><li><a href="#_card_find_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_find_post_request"><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>card</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_card_find_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have right to perform this operation. Probably a missing scope.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_item__card_id_"><span class="parent">/card</span>/item/{card_id}</a> <span class="methods"><a href="#_card_item__card_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_card_item__card_id__patch"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_card_item__card_id__delete"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_item__card_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_item__card_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Access the card description</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_card_item__card_id__patch'" class="list-group-item"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Update a card details.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_card_item__card_id__delete'" class="list-group-item"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Remove a card from a users portfolio. This actually does nottotally remove the card from the database, but it changes the cardstatus and prevent any further changes on it.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_item__card_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/item/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Access the card description</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_item__card_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_card_item__card_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_item__card_id__get_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>id of the card</p></li></ul></div><div class="tab-pane" id="_card_item__card_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "dmo_id":{
+      "type": "string"
+    },
+    "user":{
+      "type":"string"
+    },
+    "status":{
+      "type":"string"
+    },
+    "fields":{
+      "type":"object"
+    },
+    "created_at":{
+      "type":"integer"
+    },
+    "updated_at":{
+      "type":"integer"
+    }
+  },
+  "required": ["id","dmo_id","status"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "id": "1450839460ihJFs",
+  "dmo_id": "136549222407nqoek",
+  "user": "140351459645aoxny",
+  "status": "135024637834qjeik",
+  "fields": {
+    "extra_login": "",
+    "extra_password": "",
+    "value": 0,
+    "expiration": "",
+    "number": "nicolas",
+    "ccv": "yo123"
+  },
+  "created_at": 1450839460,
+  "updated_at": 1451972060
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>The current user does not have read access on this card.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_item__card_id__patch"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/item/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update a card details.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_item__card_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#_card_item__card_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_item__card_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>id of the card</p></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>ccv</strong>: <em>(string )</em></li><li><strong>number</strong>: <em>(string )</em></li><li><strong>value</strong>: <em>(number )</em></li><li><strong>expiration</strong>: <em>(integer )</em></li><li><strong>extra_login</strong>: <em>(string )</em></li><li><strong>extra_password</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_card_item__card_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "dmo_id":{
+      "type": "string"
+    },
+    "user":{
+      "type":"string"
+    },
+    "status":{
+      "type":"string"
+    },
+    "fields":{
+      "type":"object"
+    },
+    "created_at":{
+      "type":"integer"
+    },
+    "updated_at":{
+      "type":"integer"
+    }
+  },
+  "required": ["id","dmo_id","status"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "id": "1450839460ihJFs",
+  "dmo_id": "136549222407nqoek",
+  "user": "140351459645aoxny",
+  "status": "135024637834qjeik",
+  "fields": {
+    "extra_login": "",
+    "extra_password": "",
+    "value": 0,
+    "expiration": "",
+    "number": "nicolas",
+    "ccv": "yo123"
+  },
+  "created_at": 1450839460,
+  "updated_at": 1451972060
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this card.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_item__card_id__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/item/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Remove a card from a users portfolio. This actually does nottotally remove the card from the database, but it changes the cardstatus and prevent any further changes on it.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_item__card_id__delete_request" data-toggle="tab">Request</a></li><li><a href="#_card_item__card_id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_item__card_id__delete_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>id of the card</p></li></ul></div><div class="tab-pane" id="_card_item__card_id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "dmo_id":{
+      "type": "string"
+    },
+    "user":{
+      "type":"string"
+    },
+    "status":{
+      "type":"string"
+    },
+    "fields":{
+      "type":"object"
+    },
+    "created_at":{
+      "type":"integer"
+    },
+    "updated_at":{
+      "type":"integer"
+    }
+  },
+  "required": ["id","dmo_id","status"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "id": "1450839460ihJFs",
+  "dmo_id": "136549222407nqoek",
+  "user": "140351459645aoxny",
+  "status": "135024637834qjeik",
+  "fields": {
+    "extra_login": "",
+    "extra_password": "",
+    "value": 0,
+    "expiration": "",
+    "number": "nicolas",
+    "ccv": "yo123"
+  },
+  "created_at": 1450839460,
+  "updated_at": 1451972060
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this card.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_barcode__card_id_"><span class="parent">/card</span>/barcode/{card_id}</a> <span class="methods"><a href="#_card_barcode__card_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_barcode__card_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_barcode__card_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Access the barcode picture of a card.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_barcode__card_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/barcode/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Access the barcode picture of a card.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_barcode__card_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_card_barcode__card_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_barcode__card_id__get_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>Id of the card for which the barcode should be fetched.</p></li></ul></div><div class="tab-pane" id="_card_barcode__card_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: image/png</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this card.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_barcode64__card_id_"><span class="parent">/card</span>/barcode64/{card_id}</a> <span class="methods"><a href="#_card_barcode64__card_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_barcode64__card_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_barcode64__card_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Fetch the barcode in a base64 format, so it can be used directly, saved, ...</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_barcode64__card_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/barcode64/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Fetch the barcode in a base64 format, so it can be used directly, saved, ...</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_barcode64__card_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_card_barcode64__card_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_barcode64__card_id__get_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>Id of the card for which the barcode should be fetched.</p></li></ul></div><div class="tab-pane" id="_card_barcode64__card_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "img": "iVBORw0KGgoAAAANSUhEUgAAAFQAAABUAQMAAAAmpYKCAAAABlBMVEUAAAD///+l2Z/dAAAAk0lEQVQokZWTQRLFMAhCuYH3vyU38IP1dyvNTJuXBSmoBYAiC7tOru4iWlvIqAL1VM5kf+Kuyrntq16fFzuypf86XNxayqI3I8bIdKiQ1Qq5gy6I2J/qiY+IwXZ6KRkxx9kTP2Fnf5rHiB0G1L69uNiNsy3pM3brZvgQ89RrtQmrss2dw5PtTVqdIp7Zc5z9PQ/+AdyHXNDYQd7kAAAAAElFTkSuQmCC"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this card.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_track__card_id_"><span class="parent">/card</span>/track/{card_id}</a> <span class="methods"><a href="#_card_track__card_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_track__card_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_track__card_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Trigger card tracking for external program provider. Result will be returned through push notification for compatible apps, or during the next fetch of card.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_track__card_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/track/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Trigger card tracking for external program provider. Result will be returned through push notification for compatible apps, or during the next fetch of card.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_track__card_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_card_track__card_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_track__card_id__get_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>Id of the card to trigger tracking</p></li></ul></div><div class="tab-pane" id="_card_track__card_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this card.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_pdf__card_id_"><span class="parent">/card</span>/pdf/{card_id}</a> <span class="methods"><a href="#_card_pdf__card_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_pdf__card_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_pdf__card_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Fetch the card as a pdf file.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_pdf__card_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/pdf/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Fetch the card as a pdf file.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_pdf__card_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_card_pdf__card_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_pdf__card_id__get_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>Id of the card</p></li></ul></div><div class="tab-pane" id="_card_pdf__card_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Returns pdf file.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this card.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_lookup"><span class="parent">/card</span>/lookup</a> <span class="methods"><a href="#_card_lookup_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_lookup" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_lookup_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Find a list of card from a query</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_lookup_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/lookup</h4></div><div class="modal-body"><div class="alert alert-info"><p>Find a list of card from a query</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_lookup_get_request" data-toggle="tab">Request</a></li><li><a href="#_card_lookup_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_lookup_get_request"><h3>Query Parameters</h3><ul><li><strong>query</strong>: <em>(string )</em><p>Can be a card number, a phone number or an email</p></li></ul></div><div class="tab-pane" id="_card_lookup_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_send__card_id_"><span class="parent">/card</span>/send/{card_id}</a> <span class="methods"><a href="#_card_send__card_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_send__card_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_send__card_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Send a card by email.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_send__card_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/send/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Send a card by email.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_send__card_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_card_send__card_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_send__card_id__get_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>Id if the card.</p></li></ul></div><div class="tab-pane" id="_card_send__card_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Card was properly sent.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have read access on this card.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_credit"><span class="parent">/card</span>/credit</a> <span class="methods"><a href="#_card_credit_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_credit" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_credit_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Credit a Loyalty program. To credit a gift card, use the cart api.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_credit_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/credit</h4></div><div class="modal-body"><div class="alert alert-info"><p>Credit a Loyalty program. To credit a gift card, use the cart api.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_credit_post_request" data-toggle="tab">Request</a></li><li><a href="#_card_credit_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_credit_post_request"><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>card_number</strong>: <em>required (string )</em></li><li><strong>amt</strong>: <em>required (number )</em></li><li><strong>exchange_id</strong>: <em>(string )</em></li><li><strong>type</strong>: <em>(one of cash,points- default: points )</em><p>If "cash", it means that amt is specified in cash. In that case a valid exchange_id needs to be specified. Otherwise, if "points" it means that the amount is specified in the card unit.</p></li></ul></div><div class="tab-pane" id="_card_credit_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Transaction was performed successfully.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Credit or Debit Card",
+  "type": "object",
+  "properties": {
+    "new_card_value": {
+      "type": "number"
+    },
+    "transaction_value":{
+      "type": "number"
+    },
+    "financial_value":{
+      "type":"number"
+    },
+    "updates":{
+      "type":"array"
+    }
+  },
+  "required": ["new_card_value","transaction_value","updates"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "new_card_value":25.0,
+  "transaction_value":20.0,
+  "financial_value":13.0,
+  "updates":[
+    {
+      "type":"card",
+      "value":{
+        "id": "1450839460ihJFs",
+        "dmo_id": "136549222407nqoek",
+        "user": "140351459645aoxny",
+        "status": "135024637834qjeik",
+        "fields": {
+          "value": 25.0,
+          "expiration": "",
+          "number": "nicolas",
+          "ccv": "yo123"
+        },
+        "created_at": 1450839460,
+        "updated_at": 1451972060
+      }
+    },
+    {
+      "type":"transaction",
+      "value":{
+        "id": "1450863017oCOsK",
+        "type": "test",
+        "object_id": "1450863017B9f5b",
+        "card": "1450839460ihJFs",
+        "amount": 20.0,
+        "conversion_amount": null,
+        "conversion_currency": null,
+        "user": "139210938138kgcaw",
+        "info": [],
+        "created_at": 1450863017,
+        "updated_at": null
+      }
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Returned when the transaction could not be processed because of wrong inputs.</p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this card.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__card_debit"><span class="parent">/card</span>/debit</a> <span class="methods"><a href="#_card_debit_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__card_debit" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_card_debit_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Debit a gift or loyalty card.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_card_debit_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/card</span>/debit</h4></div><div class="modal-body"><div class="alert alert-info"><p>Debit a gift or loyalty card.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_card_debit_post_request" data-toggle="tab">Request</a></li><li><a href="#_card_debit_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_card_debit_post_request"><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>card_number</strong>: <em>required (string )</em></li><li><strong>amt</strong>: <em>required (number )</em></li><li><strong>exchange_id</strong>: <em>(string )</em></li><li><strong>type</strong>: <em>(one of cash,points- default: points )</em><p>If "cash", it means that amt is specified in cash. In that case a valid exchange_id needs to be specified. Otherwise, if "points" it means that the amount is specified in the card unit.</p></li></ul></div><div class="tab-pane" id="_card_debit_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Transaction was performed successfully.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Credit or Debit Card",
+  "type": "object",
+  "properties": {
+    "new_card_value": {
+      "type": "number"
+    },
+    "transaction_value":{
+      "type": "number"
+    },
+    "financial_value":{
+      "type":"number"
+    },
+    "updates":{
+      "type":"array"
+    }
+  },
+  "required": ["new_card_value","transaction_value","updates"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "new_card_value":25.0,
+  "transaction_value":20.0,
+  "financial_value":13.0,
+  "updates":[
+    {
+      "type":"card",
+      "value":{
+        "id": "1450839460ihJFs",
+        "dmo_id": "136549222407nqoek",
+        "user": "140351459645aoxny",
+        "status": "135024637834qjeik",
+        "fields": {
+          "value": 25.0,
+          "expiration": "",
+          "number": "nicolas",
+          "ccv": "yo123"
+        },
+        "created_at": 1450839460,
+        "updated_at": 1451972060
+      }
+    },
+    {
+      "type":"transaction",
+      "value":{
+        "id": "1450863017oCOsK",
+        "type": "test",
+        "object_id": "1450863017B9f5b",
+        "card": "1450839460ihJFs",
+        "amount": 20.0,
+        "conversion_amount": null,
+        "conversion_currency": null,
+        "user": "139210938138kgcaw",
+        "info": [],
+        "created_at": 1450863017,
+        "updated_at": null
+      }
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Returned when the transaction could not be processed because of wrong inputs.</p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have write access on this card.</p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_statu" class="panel-title">/statu</h3></div><div class="panel-body"><div class="top-resource-description"><p>Each card has a status. This object defines the mapping between the unique id and the readable name of a status.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__statu_all__date_"><span class="parent">/statu</span>/all/{date}</a> <span class="methods"><a href="#_statu_all__date__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__statu_all__date_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_statu_all__date__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the full list of status.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_statu_all__date__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/statu</span>/all/{date}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the full list of status.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_statu_all__date__get_request" data-toggle="tab">Request</a></li><li><a href="#_statu_all__date__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_statu_all__date__get_request"><h3>URI Parameters</h3><ul><li><strong>date</strong>: <em>(integer )</em><p>Timestamp. If specified, only status with a timestamp strictly superior to this one will be returned.</p></li></ul></div><div class="tab-pane" id="_statu_all__date__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__statu_find"><span class="parent">/statu</span>/find</a> <span class="methods"><a href="#_statu_find_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__statu_find" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_statu_find_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Find a list of card status depending on the post params.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_statu_find_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/statu</span>/find</h4></div><div class="modal-body"><div class="alert alert-info"><p>Find a list of card status depending on the post params.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_statu_find_post_request" data-toggle="tab">Request</a></li><li><a href="#_statu_find_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_statu_find_post_request"><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>card_statu</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_statu_find_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__statu_item__statu_id_"><span class="parent">/statu</span>/item/{statu_id}</a> <span class="methods"><a href="#_statu_item__statu_id__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__statu_item__statu_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_statu_item__statu_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Access the status description</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_statu_item__statu_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/statu</span>/item/{statu_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Access the status description</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_statu_item__statu_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_statu_item__statu_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_statu_item__statu_id__get_request"><h3>URI Parameters</h3><ul><li><strong>statu_id</strong>: <em>required (string )</em><p>id of the status</p></li></ul></div><div class="tab-pane" id="_statu_item__statu_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "id": "135024637834qjeik",
+  "name": "revoked",
+  "description": "",
+  "created_at": 0,
+  "updated_at": 0
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_transaction" class="panel-title">/transaction</h3></div><div class="panel-body"><div class="top-resource-description"><p>Access to transactions on a card. For giift issued cards, the value of the card is equal to the sum of transactions values.<ul><li>For a transaction removing value from a card (debit), the sign will be negative.</li><li>For transactions crediting a card, the sign will be positive.</li></ul>A user only has access to transactions on his cards.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__transaction_all__date_"><span class="parent">/transaction</span>/all/{date}</a> <span class="methods"><a href="#_transaction_all__date__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__transaction_all__date_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_transaction_all__date__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the full list of transaction for the current user.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_transaction_all__date__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/transaction</span>/all/{date}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the full list of transaction for the current user.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_transaction_all__date__get_request" data-toggle="tab">Request</a></li><li><a href="#_transaction_all__date__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_transaction_all__date__get_request"><h3>URI Parameters</h3><ul><li><strong>date</strong>: <em>(integer )</em><p>Timestamp. If specified, only transaction with a timestamp strictly superior to this one will be returned.</p></li></ul></div><div class="tab-pane" id="_transaction_all__date__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have right to perform this operation. Probably a missing scope.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__transaction_find"><span class="parent">/transaction</span>/find</a> <span class="methods"><a href="#_transaction_find_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__transaction_find" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_transaction_find_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Find a list of transaction depending on the post parameter.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_transaction_find_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/transaction</span>/find</h4></div><div class="modal-body"><div class="alert alert-info"><p>Find a list of transaction depending on the post parameter.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_transaction_find_post_request" data-toggle="tab">Request</a></li><li><a href="#_transaction_find_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_transaction_find_post_request"><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>transaction</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_transaction_find_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have right to perform this operation. Probably a missing scope.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__transaction_for_card__card_id_"><span class="parent">/transaction</span>/for_card/{card_id}</a> <span class="methods"><a href="#_transaction_for_card__card_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__transaction_for_card__card_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_transaction_for_card__card_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the list of transactions underlying a card.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_transaction_for_card__card_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/transaction</span>/for_card/{card_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the list of transactions underlying a card.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_transaction_for_card__card_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_transaction_for_card__card_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_transaction_for_card__card_id__get_request"><h3>URI Parameters</h3><ul><li><strong>card_id</strong>: <em>required (string )</em><p>Id of the card for which to fetch transactions.</p></li></ul></div><div class="tab-pane" id="_transaction_for_card__card_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__transaction_item__transaction_id_"><span class="parent">/transaction</span>/item/{transaction_id}</a> <span class="methods"><a href="#_transaction_item__transaction_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__transaction_item__transaction_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_transaction_item__transaction_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Access the transaction description</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_transaction_item__transaction_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/transaction</span>/item/{transaction_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Access the transaction description</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_transaction_item__transaction_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_transaction_item__transaction_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_transaction_item__transaction_id__get_request"><h3>URI Parameters</h3><ul><li><strong>transaction_id</strong>: <em>required (string )</em><p>id of the transaction</p></li></ul></div><div class="tab-pane" id="_transaction_item__transaction_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "id": "1450863017oCOsK",
+  "type": "test",
+  "object_id": "1450863017B9f5b",
+  "card": "1450862693umUsF",
+  "amount": "20",
+  "conversion_amount": null,
+  "conversion_currency": null,
+  "user": "139210938138kgcaw",
+  "info": [],
+  "created_at": "1450863017",
+  "updated_at": null
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>The current user does not have read access on this transaction.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__transaction_send__transaction_id_"><span class="parent">/transaction</span>/send/{transaction_id}</a> <span class="methods"><a href="#_transaction_send__transaction_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__transaction_send__transaction_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_transaction_send__transaction_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Send a transaction by email.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_transaction_send__transaction_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/transaction</span>/send/{transaction_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Send a transaction by email.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_transaction_send__transaction_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_transaction_send__transaction_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_transaction_send__transaction_id__get_request"><h3>URI Parameters</h3><ul><li><strong>transaction_id</strong>: <em>required (string )</em><p>id of the transaction to be emailed</p></li></ul></div><div class="tab-pane" id="_transaction_send__transaction_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Transaction summary was properly sent by e-mail.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>The current user does not have read access on this transaction.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__transaction_pdf__transaction_id_"><span class="parent">/transaction</span>/pdf/{transaction_id}</a> <span class="methods"><a href="#_transaction_pdf__transaction_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__transaction_pdf__transaction_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_transaction_pdf__transaction_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Fetch a transaction as a pdf file ready to be printed.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_transaction_pdf__transaction_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/transaction</span>/pdf/{transaction_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Fetch a transaction as a pdf file ready to be printed.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_transaction_pdf__transaction_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_transaction_pdf__transaction_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_transaction_pdf__transaction_id__get_request"><h3>URI Parameters</h3><ul><li><strong>transaction_id</strong>: <em>required (string )</em><p>id of the transaction to be emailed</p></li></ul></div><div class="tab-pane" id="_transaction_pdf__transaction_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>File was properly fetched.</p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>The current user does not have read access on this transaction.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__transaction_refund__transaction_id_"><span class="parent">/transaction</span>/refund/{transaction_id}</a> <span class="methods"><a href="#_transaction_refund__transaction_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__transaction_refund__transaction_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_transaction_refund__transaction_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Refund a transaction from its id.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_transaction_refund__transaction_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/transaction</span>/refund/{transaction_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Refund a transaction from its id.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_transaction_refund__transaction_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_transaction_refund__transaction_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_transaction_refund__transaction_id__get_request"><h3>URI Parameters</h3><ul><li><strong>transaction_id</strong>: <em>required (string )</em><p>id of the transaction to be refunded</p></li></ul></div><div class="tab-pane" id="_transaction_refund__transaction_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "new_card_value":25.0,
+  "updates":[
+    {
+      "type":"card",
+      "value":{
+        "id": "1450839460ihJFs",
+        "dmo_id": "136549222407nqoek",
+        "user": "140351459645aoxny",
+        "status": "135024637834qjeik",
+        "fields": {
+          "value": 25.0,
+          "expiration": "",
+          "number": "nicolas",
+          "ccv": "yo123"
+        },
+        "created_at": 1450839460,
+        "updated_at": 1451972060
+      }
+    },
+    {
+      "type":"transaction",
+      "value":{
+        "id": "1450863017oCOsK",
+        "type": "test",
+        "object_id": "1450863017B9f5b",
+        "card": "1450839460ihJFs",
+        "amount": 20.0,
+        "conversion_amount": null,
+        "conversion_currency": null,
+        "user": "139210938138kgcaw",
+        "info":{
+          "refunded":true
+        },
+        "created_at": 1450863017,
+        "updated_at": 1451972060
+      }
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>The current user does not have write access on this transaction.</p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_type" class="panel-title">/type</h3></div><div class="panel-body"><div class="top-resource-description"><p>Each card has a type: ccards, rcards, ucards, xcards, miles ...This controller provides access to the list of card types.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__type_all__date_"><span class="parent">/type</span>/all/{date}</a> <span class="methods"><a href="#_type_all__date__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__type_all__date_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_type_all__date__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Fetch the whole list of card types.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_type_all__date__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/type</span>/all/{date}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Fetch the whole list of card types.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_type_all__date__get_request" data-toggle="tab">Request</a></li><li><a href="#_type_all__date__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_type_all__date__get_request"><h3>URI Parameters</h3><ul><li><strong>date</strong>: <em>(integer )</em><p>Timestamp. If specified, only status with a timestamp strictly superior to this one will be returned.</p></li></ul></div><div class="tab-pane" id="_type_all__date__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__type_find"><span class="parent">/type</span>/find</a> <span class="methods"><a href="#_type_find_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__type_find" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_type_find_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Fetch a list of card types depending on the post parameter.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_type_find_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/type</span>/find</h4></div><div class="modal-body"><div class="alert alert-info"><p>Fetch a list of card types depending on the post parameter.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_type_find_post_request" data-toggle="tab">Request</a></li><li><a href="#_type_find_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_type_find_post_request"><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>card_type</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_type_find_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__type_item__type_id_"><span class="parent">/type</span>/item/{type_id}</a> <span class="methods"><a href="#_type_item__type_id__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__type_item__type_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_type_item__type_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Access the type description</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_type_item__type_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/type</span>/item/{type_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Access the type description</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_type_item__type_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_type_item__type_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_type_item__type_id__get_request"><h3>URI Parameters</h3><ul><li><strong>type_id</strong>: <em>required (string )</em><p>id of the type</p></li></ul></div><div class="tab-pane" id="_type_item__type_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "id": "135024648880cadve",
+  "name": "custom card",
+  "type_table": "ccards",
+  "description": "",
+  "created_at": 0,
+  "updated_at": 0
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_add" class="panel-title">/add</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__add_init__dmo_id_"><span class="parent">/add</span>/init/{dmo_id}</a> <span class="methods"><a href="#_add_init__dmo_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__add_init__dmo_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_add_init__dmo_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Initialize the adition of a card to the current user&#39;s portfolio.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_add_init__dmo_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/add</span>/init/{dmo_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Initialize the adition of a card to the current user&#39;s portfolio.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_add_init__dmo_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_add_init__dmo_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_add_init__dmo_id__get_request"><h3>URI Parameters</h3><ul><li><strong>dmo_id</strong>: <em>required (string )</em><p>Id of the dmo, for which the card should be added to the user&#39;s portfolio.</p></li></ul></div><div class="tab-pane" id="_add_init__dmo_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Card Add WF order schema",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "type":{
+      "type": "string"
+    },
+    "screen":{
+      "type":"array"
+    },
+    "updates":{
+      "type":"array"
+    }
+  },
+  "required": ["orderId","type","screen","updates"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "orderId": "1451972686KWTHW",
+  "type": "wf",
+  "screen": [
+    {
+      "type": "html",
+      "value": "Automatic tracking not available",
+      "key": "program not tracked yet"
+    },
+    {
+      "type": "form",
+      "value": {
+        "fields": {
+          "value": {
+            "label": "",
+            "label_id": "amount",
+            "label_replace": [],
+            "id": "value",
+            "type": "number",
+            "mandatory": false,
+            "value": null,
+            "group": null,
+            "order": 0,
+            "settings": {
+              "validation": [
+                "numeric"
+              ]
+            }
+          },
+          "number": {
+            "label": "",
+            "label_id": "login_name",
+            "label_replace": [],
+            "id": "number",
+            "type": "text",
+            "mandatory": false,
+            "value": null,
+            "group": null,
+            "order": 1,
+            "settings": []
+          }
+        },
+        "groups": [],
+        "settings": []
+      }
+    },
+    {
+      "type": "actions",
+      "value": [
+        {
+          "label": "Save",
+          "value": "SAVE_ACTION",
+          "label-id": "save",
+          "validation": true,
+          "type": "step"
+        },
+        {
+          "label": "Cancel",
+          "value": "CANCEL_ACTION",
+          "label-id": "add_wf_cancel",
+          "validation": false,
+          "type": "step"
+        }
+      ]
+    }
+  ],
+  "updates": []
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have authority on this card add order.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__add_step__order_id___action_"><span class="parent">/add</span>/step/{order_id}/{action}</a> <span class="methods"><a href="#_add_step__order_id___action__post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__add_step__order_id___action_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_add_step__order_id___action__post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Move the addition order through its workflow.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_add_step__order_id___action__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/add</span>/step/{order_id}/{action}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Move the addition order through its workflow.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_add_step__order_id___action__post_request" data-toggle="tab">Request</a></li><li><a href="#_add_step__order_id___action__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_add_step__order_id___action__post_request"><h3>URI Parameters</h3><ul><li><strong>order_id</strong>: <em>required (string )</em><p>Id of the order that was created through a call to /card/add/init/{dmo_id}</p></li><li><strong>action</strong>: <em>required (string )</em><p>Action among the different actions that were returned by a previous call to /card/add/init/{dmo_id} or /card/add/step/{order_id}/{action} or /card/add/resume/{order_id}</p></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p></div><div class="tab-pane" id="_add_step__order_id___action__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Card Add WF order schema",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "type":{
+      "type": "string"
+    },
+    "screen":{
+      "type":"array"
+    },
+    "updates":{
+      "type":"array"
+    }
+  },
+  "required": ["orderId","type","screen","updates"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "orderId": "1451972686KWTHW",
+  "type": "wf",
+  "screen": [
+    {
+      "type": "html",
+      "value": "Automatic tracking not available",
+      "key": "program not tracked yet"
+    },
+    {
+      "type": "form",
+      "value": {
+        "fields": {
+          "value": {
+            "label": "",
+            "label_id": "amount",
+            "label_replace": [],
+            "id": "value",
+            "type": "number",
+            "mandatory": false,
+            "value": null,
+            "group": null,
+            "order": 0,
+            "settings": {
+              "validation": [
+                "numeric"
+              ]
+            }
+          },
+          "number": {
+            "label": "",
+            "label_id": "login_name",
+            "label_replace": [],
+            "id": "number",
+            "type": "text",
+            "mandatory": false,
+            "value": null,
+            "group": null,
+            "order": 1,
+            "settings": []
+          }
+        },
+        "groups": [],
+        "settings": []
+      }
+    },
+    {
+      "type": "actions",
+      "value": [
+        {
+          "label": "Save",
+          "value": "SAVE_ACTION",
+          "label-id": "save",
+          "validation": true,
+          "type": "step"
+        },
+        {
+          "label": "Cancel",
+          "value": "CANCEL_ACTION",
+          "label-id": "add_wf_cancel",
+          "validation": false,
+          "type": "step"
+        }
+      ]
+    }
+  ],
+  "updates": []
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have authority on this card add order.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__add_resume__order_id_"><span class="parent">/add</span>/resume/{order_id}</a> <span class="methods"><a href="#_add_resume__order_id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__add_resume__order_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_add_resume__order_id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Fetche an order as it was left by a previous call to /card/add/init/{dmo_id} or /card/add/step/{dmo_id}/{action}</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_add_resume__order_id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/add</span>/resume/{order_id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Fetche an order as it was left by a previous call to /card/add/init/{dmo_id} or /card/add/step/{dmo_id}/{action}</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_add_resume__order_id__get_request" data-toggle="tab">Request</a></li><li><a href="#_add_resume__order_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_add_resume__order_id__get_request"><h3>URI Parameters</h3><ul><li><strong>order_id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_add_resume__order_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Card Add WF order schema",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "type":{
+      "type": "string"
+    },
+    "screen":{
+      "type":"array"
+    },
+    "updates":{
+      "type":"array"
+    }
+  },
+  "required": ["orderId","type","screen","updates"]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "orderId": "1451972686KWTHW",
+  "type": "wf",
+  "screen": [
+    {
+      "type": "html",
+      "value": "Automatic tracking not available",
+      "key": "program not tracked yet"
+    },
+    {
+      "type": "form",
+      "value": {
+        "fields": {
+          "value": {
+            "label": "",
+            "label_id": "amount",
+            "label_replace": [],
+            "id": "value",
+            "type": "number",
+            "mandatory": false,
+            "value": null,
+            "group": null,
+            "order": 0,
+            "settings": {
+              "validation": [
+                "numeric"
+              ]
+            }
+          },
+          "number": {
+            "label": "",
+            "label_id": "login_name",
+            "label_replace": [],
+            "id": "number",
+            "type": "text",
+            "mandatory": false,
+            "value": null,
+            "group": null,
+            "order": 1,
+            "settings": []
+          }
+        },
+        "groups": [],
+        "settings": []
+      }
+    },
+    {
+      "type": "actions",
+      "value": [
+        {
+          "label": "Save",
+          "value": "SAVE_ACTION",
+          "label-id": "save",
+          "validation": true,
+          "type": "step"
+        },
+        {
+          "label": "Cancel",
+          "value": "CANCEL_ACTION",
+          "label-id": "add_wf_cancel",
+          "validation": false,
+          "type": "step"
+        }
+      ]
+    }
+  ],
+  "updates": []
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Bad or expired token. To fix it, re-authenticate the user.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Current user does not have authority on this card add order.</p></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_card">/card</a></li><li><a href="#_statu">/statu</a></li><li><a href="#_transaction">/transaction</a></li><li><a href="#_type">/type</a></li><li><a href="#_add">/add</a></li></ul></div></div></div></div></body></html>
