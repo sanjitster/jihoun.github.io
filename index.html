@@ -1,33 +1,30 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Giift.com API documentation</title>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    </head>
-    <body data-spy="scroll" data-target="#sidebar">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<h1>Giift.com API documentation</h1>
-				<p>https://www.giift.com/api</p>
-			</div>
-		</nav>	
-		<div class="container">
-    		<div class="row">
-	    		<div>
-					<ul class="nav nav-pills nav-stacked">
-						<li><a href="auth.html">/auth</a></li>
-						<li><a href="card.html">/card</a></li>
-						<li><a href="cart.html">/cart</a></li>
-						<li><a href="common.html">/common</a></li>
-						<li><a href="dmo.html">/dmo</a></li>
-						<li><a href="exchange.html">/exchange</a></li>
-						<li><a href="user.html">/user</a></li>
-					</ul>
-		    	</div>
-	    	</div>
-    	</div>
-    </body>
+<!DOCTYPE html>
+<html lang="en" data-ng-app="giift-developer">
+<head>
+	<title>Giift.com Api documentation</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="dist/js/vendor.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Giift.com for developers</a>
+	    </div>
+	  </div>
+	</nav>	
+	    <div class="container-fluid">
+        <div ng-view></div>
+    </div>
+    <script src="dist/js/all.js"></script>
+</body>
 </html>
