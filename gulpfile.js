@@ -7,7 +7,7 @@ var babel = require('gulp-babel');
 var ngAnnotate = require('gulp-ng-annotate');
 
 // Static server
-gulp.task('default', ['scripts-vendor','scripts','html'], function() {
+gulp.task('default', ['scripts-vendor','scripts','html','style'], function() {
 	gulp.watch('./index.html').on('change', browserSync.reload);
     gulp.watch('js/**/*.js', ['scripts']);
     gulp.watch('templates/**/*.html', ['html']);
@@ -17,7 +17,7 @@ gulp.task('default', ['scripts-vendor','scripts','html'], function() {
 	});
 });
 
-gulp.task('dist', ['scripts-vendor','scripts-dist','html-dist'], function() {
+gulp.task('dist', ['scripts-vendor','scripts-dist','html-dist','style'], function() {
 });
 
 gulp.task('scripts-vendor', function() {
@@ -60,4 +60,12 @@ gulp.task('html-dist', function() {
     gulp.src('templates/**/*.html')
         .pipe(htmlmin(options))
         .pipe(gulp.dest('dist/templates/'));
+});
+
+gulp.task('style', function(){
+    gulp.src([
+        'bower_components/bootstrap/dist/css/bootstrap.min.css',
+        'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'])
+    .pipe(concat('vendor.css'))
+    .pipe(gulp.dest('dist/css'));
 });
