@@ -10,20 +10,23 @@
                     // controller: 'SigninController',
                     // controllerAs: 'signinCtrl'
                 })
+                .when('/404',{
+                    templateUrl: 'templates/404.html'
+                })
                 .when('/:product', {
-                    templateUrl: 'templates/coming_soon.html',
+                    templateUrl: 'templates/index.html',
                     // controller: 'SigninController',
                     // controllerAs: 'signinCtrl'
                 })
                 .when('/:product/:platform', {
-                    templateUrl: 'templates/coming_soon.html',
+                    templateUrl: 'templates/index.html',
                 })
                 .when('/:product/:platform/:tab', {
-                    templateUrl: 'templates/coming_soon.html',
+                    templateUrl: 'templates/index.html',
                 })
                 .when('/:product/:platform/:tab/:article', {
-                    templateUrl: 'templates/coming_soon.html',
+                    templateUrl: 'templates/index.html',
                 })
-                .otherwise({ redirectTo:'/coming_soon'});
+                .otherwise({ redirectTo:'/404'});
         });
 })();
